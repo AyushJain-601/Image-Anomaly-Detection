@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/ashish/PycharmProjects/Image-forgery-detection/Image-Forgery-0.001-conv-basic.model"
+all_model_checkpoint_paths: "/home/ashish/PycharmProjects/Image-forgery-detection/Image-Forgery-0.001-conv-basic.model"

@@ -1,0 +1,26 @@
+<annotation>
+	<folder>train</folder>
+	<filename>train.61.jpg</filename>
+	<path>/home/ashish/object-detection/Images/train/train.61.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>463</width>
+		<height>600</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>aadhar</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>26</xmin>
+			<ymin>89</ymin>
+			<xmax>322</xmax>
+			<ymax>327</ymax>
+		</bndbox>
+	</object>
+</annotation>
