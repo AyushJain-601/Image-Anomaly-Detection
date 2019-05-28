@@ -56,15 +56,18 @@ def load_image_into_numpy_array(image):
 # image1.jpg
 # image2.jpg
 # If you want to test the code with your images, just add path to the images to the TEST_IMAGE_PATHS.
-PATH_TO_TEST_IMAGES_DIR = 'Images/run_test'
+targetDIR = "/home/ashish/Anomoly-detection/object-detection/aadhar_image_extracted/"
 from tqdm import tqdm
 PATH_TO_TEST_IMAGES_DIR = 'Images/run_test'
 temp= []
+
 for img in tqdm(os.listdir(PATH_TO_TEST_IMAGES_DIR)):
 	temp.append(img)
+	
 TEST_IMAGE_PATHS = [ os.path.join(PATH_TO_TEST_IMAGES_DIR, temp[i]) for i in range(len(temp)) ]
-# Size, in inches, of the output images.
+Tagetpath = [ os.path.join(targetDIR, temp[i]) for i in range(len(temp)) ]
 IMAGE_SIZE = (12, 8)
+
 
 with detection_graph.as_default():
   	with tf.Session(graph=detection_graph) as sess:
@@ -77,6 +80,7 @@ with detection_graph.as_default():
 	    detection_scores = detection_graph.get_tensor_by_name('detection_scores:0')
 	    detection_classes = detection_graph.get_tensor_by_name('detection_classes:0')
 	    num_detections = detection_graph.get_tensor_by_name('num_detections:0')
+	    i =0
 	    for image_path in TEST_IMAGE_PATHS:
 	      image = Image.open(image_path)
 	      # the array based representation of the image will be used later in order to prepare the
@@ -107,5 +111,6 @@ with detection_graph.as_default():
 
 	      Result = np.array(image_np2[ymin:ymax,xmin:xmax])
 	      cv2.imshow(image_path,Result)
-
+	      cv2.imwrite(Tagetpath[0],Result)
+	      i+=1
 cv2.waitKey(0)
