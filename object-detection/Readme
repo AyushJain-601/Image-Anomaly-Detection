@@ -28,13 +28,19 @@
 
 4. Train model
 	* Inside "/object_detection/" directory: 
-		* Run python train.py --logtostderr --train_dir=training/ --pipeline_config_path=training/faster_rcnn_inception_v2_coco.config
+		* Run python3 train.py --logtostderr --train_dir=training/ --pipeline_config_path=training/faster_rcnn_inception_v2_coco.config
 		* Run tensorboard --logdir=/Images in a seperate terminal inside same /object_detection directory
 		* Stop training the function when total loss graph saturates
 		* trained model will be saved in /object_detection/Images folder
 
-5. Test dataset
+5. Inference graph generation
+	* Inside "/object_detection/" directory: 
+		* run and change path according to the path where trained model is saved python3 export_inference_graph.py --input-type image_tensor --pipeline_config_path /training/faster_rcnn_inception_v2_coco.config --trained_checkpoint_prefix Images/model.ckpt-11579 --output_directory Images
+
+
+6. Test dataset
 	* Save all the images inside "object_detection/Images" directory
 	* Inside "object_detection" directory:
-		* Run python3 aadhar_extraction.py
+		* For multiple images run python3 aadhar_extraction_multiple.py providing path of directory
+		* For single image run python3 aadhar_extraction-single.py providing path of single file
 		* Extracted images are saved in /object-detection/aadhar_image_extracted/ directory

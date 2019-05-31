@@ -1,5 +1,5 @@
 pre-requisite:
-	* pip3 install numpy sklearn cv2 PIL tensorflow matplotlib utils tqdm tflearn pdf2image --user
+	* pip3 install numpy sklearn opencv-python PIL tensorflow matplotlib utils tqdm tflearn pdf2image --user
 	* git clone https://github.com/tensorflow/models.git
 	* save all the object detection files in the "models/research/object_detection" directory
 	* (object-detection) For dataset xml file creation use "git clone https://github.com/tzutalin/labelImg.git" then inside labelimg directory run "python3 labelImg.py"

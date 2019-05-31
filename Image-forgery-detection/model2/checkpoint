@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/ashish/Anomoly-detection/Image-forgery-detection/model2/Image-Forgery-CNN.model"
+all_model_checkpoint_paths: "/home/ashish/Anomoly-detection/Image-forgery-detection/model2/Image-Forgery-CNN.model"

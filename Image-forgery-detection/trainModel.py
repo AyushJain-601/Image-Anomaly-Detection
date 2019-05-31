@@ -1,12 +1,17 @@
+#Training and Saving model
 import os
 from tqdm import tqdm
 from PIL import Image, ImageChops, ImageEnhance
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-modelDIR = "/home/ashish/Anomoly-detection/Image-forgery-detection/model/"
-posDIR = "./dataset/Training_data/"
+#Save model directory
+modelDIR = "/home/ashish/Anomoly-detection/Image-forgery-detection/model2/"
+#training dataset directory location
+posDIR = "./dataset/extracteddataset/"
+#testing dataset directory location
 testDIR = "./dataset/Testdataset/"
+#Training image size
 imgSize = 128
 lr = 0.001
 
@@ -16,6 +21,8 @@ MODEL_NAME = 'Image-Forgery-{}.model'.format('CNN')
 def data_label(imgtag):
     address = imgtag
     word_label = address.split(".")[0]
+    #Creating labels for training images
+    #so that they can be compared on the basis of percentage of Real or Fake
     if word_label == "positive":
         return np.array([1,0])
 
@@ -55,7 +62,7 @@ def training_data(direc):
     trainingData = []
 
     for img in tqdm(os.listdir(direc)):
-        label = data_label(img)   #Labeling training images based on their types positive or negative
+        label = data_label(img) 
         pathImg = os.path.join(direc, img)
         elaImg = convert_ela(pathImg, 90)
 
@@ -68,21 +75,21 @@ def training_data(direc):
 
 
 
-x_test = []
-y_test = []
-def testing_data(direc):
-    testingData= []
+# x_test = []
+# y_test = []
+# def testing_data(direc):
+#     testingData= []
 
-    for img in tqdm(os.listdir(direc)):
-        pathImg = os.path.join(direc, img)
-        elaImg = convert_ela(pathImg, 90)
-        num = pathImg.split('.')[2]
-        print(num)
-        x_test.append(np.array(elaImg.resize((128, 128))).flatten() / 255.0)
-        y_test.append(num)
-    testingData.append([x_test,y_test])
-    np.save('testing_data.npy', testingData)
-    return testingData
+#     for img in tqdm(os.listdir(direc)):
+#         pathImg = os.path.join(direc, img)
+#         elaImg = convert_ela(pathImg, 90)
+#         num = pathImg.split('.')[2]
+#         print(num)
+#         x_test.append(np.array(elaImg.resize((128, 128))).flatten() / 255.0)
+#         y_test.append(num)
+#     testingData.append([x_test,y_test])
+#     np.save('testing_data.npy', testingData)
+#     return testingData
 
 
 
@@ -104,6 +111,7 @@ if __name__ == '__main__':
     from tflearn.layers.core import input_data, dropout, fully_connected
     from tflearn.layers.estimator import regression
 
+    # 6-Hidden and 1-output layer CNN model using tflearn
     import tensorflow as tf
 
     tf.reset_default_graph()
@@ -134,6 +142,8 @@ if __name__ == '__main__':
     model = tflearn.DNN(convnet, tensorboard_verbose=1)
     with tf.Session() as sess:
         writer = tf.summary.FileWriter("/home/ashish/Anomoly-detection/Image-forgery-detection/log", sess.graph)
+    
+    #Training operation
     history = model.fit({'input': x_train},{'targets': y_train}, n_epoch=60,
               validation_set=({'input':x_val},{'targets': y_val}), snapshot_step=500,
               show_metric=True, run_id=MODEL_NAME)

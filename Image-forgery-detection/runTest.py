@@ -74,22 +74,31 @@ if __name__ == '__main__':
 
     model.load(MODEL_NAME)
 
-
+    
+    #extracting test iamges
     for img in tqdm(os.listdir(testDIR)):
         pathImg = os.path.join(testDIR, img)
+        
+        #creating ELA format of test iamges so that it can be compared
         elaImg = convert_ela(pathImg, 90)
         num = pathImg.split('.')[2]
-        x_test.append(np.array(elaImg.resize((128, 128))).flatten() / 255.0)
+
+        #resizing image to fit the model configurations
+        x_test.append(np.array(elaImg.resize((imgSize, imgSize))).flatten() / 255.0)
         y_test.append(num)
 
+
+    #Reshaping and converting list to array
     x_test = np.array(x_test)
     x_test = x_test.reshape(-1, imgSize, imgSize, 3)
-    print(y_test)
     output = []
     i=0;
     for img in x_test:
+        #Creating single input image test data
         img = np.expand_dims(img, 0)
+        #Input image prediction process
         pred = model.predict(img)
+        #If prediction % of real>fake then output real image
         pred2 = (model.predict(img) > 0.5).astype(int)
         if pred2[0][0] == 0:
             output.append('Fake')

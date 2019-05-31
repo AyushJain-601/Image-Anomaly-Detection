@@ -13,7 +13,6 @@ from io import StringIO
 from matplotlib import pyplot as plt
 from PIL import Image
 
-# This is needed to display the images.
 # %matplotlib inline
 # from IPython import get_ipython
 # get_ipython().run_line_magic('matplotlib', 'inline')
@@ -103,7 +102,8 @@ with detection_graph.as_default():
 	          category_index,
 	          use_normalized_coordinates=True,
 	          line_thickness=8)
-	      print(image_np.shape)
+
+	      #Saving bounding box coordinates formed
 	      ymin = int((boxes[0][0][0]*image_np.shape[0]))
 	      xmin = int((boxes[0][0][1]*image_np.shape[1]))
 	      ymax = int((boxes[0][0][2]*image_np.shape[0]))
