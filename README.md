@@ -16,6 +16,8 @@ To Run:
 
 * git clone https://github.com/tensorflow/models.git
 
+* follow these steps to install Tensorflow object_detection module https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/installation.md
+
 * save all the object detection files in the "models/research/object_detection" directory
 
 * (object-detection) For dataset xml file creation use "git clone https://github.com/tzutalin/labelImg.git" then inside labelimg directory run "python3 labelImg.py"
