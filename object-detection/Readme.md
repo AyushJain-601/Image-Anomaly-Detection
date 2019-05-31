@@ -72,8 +72,8 @@ Detects trained object in the input image.
 
 * Inside "object_detection" directory:
 
-	* For multiple images run python3 aadhar_extraction_multiple.py providing path of directory
+	* For multiple images run python3 extraction_multiple.py providing path of directory
 	
-	* For single image run python3 aadhar_extraction-single.py providing path of single file
+	* For single image run python3 extraction_single.py providing path of single file
 	
-	* Extracted images are saved in /object-detection/aadhar_image_extracted/ directory
+	* Extracted images are saved in /object-detection/image_extracted/ directory
