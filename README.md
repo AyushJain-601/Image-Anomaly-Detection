@@ -2,6 +2,12 @@
 
 Detects whether image is digitally morphed or not.
 
+### Note
+
+runTest.py is complete script of with object detection embedded in it.
+To Run:
+	* Just provide path to the trained model(Both obeject detection and image forgery model) and provide path of test image
+
 ## Getting Started
 
 ### pre-requisite
