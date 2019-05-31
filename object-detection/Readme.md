@@ -4,7 +4,8 @@ Detects trained object in the input image.
 
 ### NOTE
 
-"object_detection" directory mentioned below is the directory from https://github.com/tensorflow/models.git. So, do clone and copy that directory(already mentioned in pre-requisite).
+* "object_detection" directory mentioned below is the directory from https://github.com/tensorflow/models.git. So, do clone and copy that directory(already mentioned in pre-requisite).
+* Extraction_single and Extraction_multiple scripts are inside temp folder
 
 ## Getting Started
 
