@@ -3,7 +3,7 @@ from tqdm import tqdm
 from PIL import Image, ImageChops, ImageEnhance
 import numpy as np
 from sklearn.model_selection import train_test_split
-from object_detection1.object_detection import aadhar_extraction_temp
+from object_detection1.object_detection import aadhar_extraction_single
 #testing data directory
 testDIR = "./dataset/Testdataset/"
 
@@ -37,7 +37,7 @@ def convert_ela(img,path,qual):
 
 
 def run(imgPath):
-    val = aadhar_extraction_temp.runTest(imgPath)
+    val = aadhar_extraction_single.runTest(imgPath)
     newPath = val[0]
     img = val[1]
     x_test = []
